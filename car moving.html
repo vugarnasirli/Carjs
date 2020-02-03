@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .bt {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 40px;
+            margin: 10px 40px;
+            cursor: pointer;
+            border-radius: 50%;
+
+        }
+
+        #dv {
+            margin: auto;
+        }
+
+        #bt1 {
+            background-color: blue;
+        }
+
+        #bt2 {
+            background-color: red;
+        }
+
+        #bt3 {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let div1 = document.createElement('div');
+            div1.id = 'dv';
+            let div2 = document.createElement('div');
+            div2.className = 'dv';
+            document.body.appendChild(div1);
+            document.body.appendChild(div2);
+            let car = document.createElement('img');
+            car.style.marginLeft = '10px'
+            car.setAttribute('src', "https://www.animatedimages.org/data/media/67/animated-car-image-0049.gif");
+            div1.appendChild(car);
+            let btn1 = document.createElement('button');
+            btn1.innerText = 'Start';
+            btn1.id = 'bt1';
+            btn1.className = 'bt'
+            let btn2 = document.createElement('button');
+            btn2.innerText = 'Stop';
+            btn2.id = 'bt2';
+            btn2.className = 'bt'
+            let btn3 = document.createElement('button');
+            btn3.innerText = 'Reset';
+            btn3.id = 'bt3';
+            btn3.className = 'bt'
+            div2.appendChild(btn1);
+            div2.appendChild(btn2);
+            div2.appendChild(btn3);
+
+            btn1.addEventListener('click', function () {
+                let isRunning = false;
+                let interval = setInterval(function () {
+                    if (!isRunning) {
+                        let btn = document.querySelector('img');
+                        let mT = parseInt(btn.style.marginLeft);
+                        mT += 5;
+                        btn.style.marginLeft = `${mT}px`;
+                        
+                        if (mT >= 900) {
+                            clearInterval(interval);
+                        }
+                    }
+
+
+                }, 100)
+                btn2.addEventListener('click', () => {
+                    
+                    clearInterval(interval);
+                
+                })
+                btn3.addEventListener('click', () => {
+                    clearInterval(interval);
+                    car.style.marginLeft = '0px';
+                    isRunning = true;
+                })
+            });
+
+
+        })
+    </script>
+</body>
+
+</html>
